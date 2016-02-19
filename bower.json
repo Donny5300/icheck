@@ -20,7 +20,7 @@
   ],
   "main": [
     "./icheck.min.js",
-    "./skins/square/css/all.css"
+    "./skins/square/_all.css"
   ],
   "dependencies": {
     "jquery": ">=1.7"
