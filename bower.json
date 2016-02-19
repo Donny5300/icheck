@@ -1,6 +1,6 @@
 {
   "name": "iCheck",
-  "version": "2.0.x",
+  "version": "2.0",
   "description": "Highly customizable checkboxes and radio buttons (jQuery & Zepto)",
   "keywords": [
     "icheck",
