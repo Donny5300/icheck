@@ -80,7 +80,8 @@
           checkedClass: _checked,
           disabledClass: _disabled,
           indeterminateClass: _indeterminate,
-          labelHover: true
+          labelHover: true,
+          trueFalseContainer: null,
         }, options),
 
         selector = settings.handle,
@@ -97,6 +98,8 @@
       if (selector == _checkbox || selector == _radio) {
         handle = 'input[type="' + selector + '"]';
       }
+
+      
 
       // Clickable area limit
       if (area < -50) {
@@ -363,6 +366,8 @@
       regular = option(input, callback + capitalize(node[_type])),
       specific = option(input, state + capitalize(node[_type]));
 
+      
+
     // Prevent unnecessary actions
     if (node[state] !== true) {
 
@@ -407,6 +412,7 @@
 
       // Trigger callbacks
       callbacks(input, checked, state, keep);
+
     }
 
     // Add proper cursor
@@ -424,6 +430,8 @@
 
     // Remove regular state class
     parent[_remove](regular || option(input, callback) || '');
+
+    setTrueFalseValue(parent);
   }
 
   // Remove checked, disabled or indeterminate state
@@ -437,6 +445,8 @@
       regular = option(input, callback + capitalize(node[_type])),
       specific = option(input, state + capitalize(node[_type]));
 
+      
+
     // Prevent unnecessary actions
     if (node[state] !== false) {
 
@@ -447,6 +457,7 @@
 
       // Trigger callbacks
       callbacks(input, checked, callback, keep);
+
     }
 
     // Add proper cursor
@@ -464,6 +475,8 @@
 
     // Add regular state class
     parent[_add](regular || option(input, callback) || '');
+
+    setTrueFalseValue(parent)
   }
 
   // Remove all traces
@@ -505,5 +518,21 @@
 
       input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
     }
+  }
+  function setTrueFalseValue(icheck){
+
+    var checkbox = icheck.find('input[type="checkbox"]').is(':checked');
+    var container = icheck.closest('.i-checks');
+
+    if(checkbox){
+      var label = container.attr('data-true-value');
+    } else {
+      var label = container.attr('data-false-value')
+    }
+
+    container.find('.i-checks-label').text(label);
+
+
+
   }
 })(window.jQuery || window.Zepto);
